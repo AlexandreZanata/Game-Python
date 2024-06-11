@@ -1,0 +1,29 @@
+<!-- game/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+            socket.on('connect', function() {
+                console.log('Connected to server');
+            });
+
+            window.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    socket.emit('jump');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>World Game</h1>
+    <p>Loading game...</p>
+</body>
+</html>
